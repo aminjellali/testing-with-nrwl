@@ -1,0 +1,30 @@
+{
+  "npmScope": "widgets-project",
+  "implicitDependencies": {
+    "angular.json": "*",
+    "package.json": "*",
+    "tsconfig.json": "*",
+    "tslint.json": "*",
+    "nx.json": "*"
+  },
+  "projects": {
+    "widgets-project": {
+      "tags": []
+    },
+    "widgets-project-e2e": {
+      "tags": []
+    },
+    "test-app": {
+      "tags": []
+    },
+    "test-app-e2e": {
+      "tags": []
+    },
+    "libs-performance-component-lib": {
+      "tags": []
+    },
+    "comparator": {
+      "tags": []
+    }
+  }
+}

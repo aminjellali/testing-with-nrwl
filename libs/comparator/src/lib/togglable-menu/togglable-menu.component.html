@@ -1,0 +1,18 @@
+<div
+  [ngClass]="openAsDefault ? 'menu menu-clicked' : 'menu'"
+  (click)="showOrHide()"
+>
+  <div class="menu-name">
+    {{ menuName }}
+  </div>
+  <div class="arrow">
+    <i class="fas fa-arrow-up" *ngIf="openAsDefault; else down"></i>
+  </div>
+</div>
+<div class="content" [@slideInOut]="openAsDefault ? 'in' : 'out'">
+  <ng-content></ng-content>
+</div>
+
+<ng-template #down>
+  <i class="fas fa-arrow-down"></i>
+</ng-template>

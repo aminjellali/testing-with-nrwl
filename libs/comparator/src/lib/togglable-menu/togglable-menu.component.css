@@ -1,0 +1,33 @@
+
+.menu {
+    display: flex;
+    flex-direction: row;
+    font-family: sans-serif;
+    margin: 0 auto;
+    background-color: #9fd5d9;
+    text-align: center;
+    text-transform: uppercase;
+    padding: 10px;
+    margin-bottom: 3px;
+    justify-content: space-between;
+    color: #00677f;
+    cursor: pointer;
+}
+.menu:hover{
+    background-color: #398c93;
+}
+.menu-clicked{
+    background-color: #398c93;
+    color: white;
+
+}
+.content {
+    font-family: sans-serif;
+    margin: 0 auto;
+    text-align: center;
+    /* color: white; */
+}
+.arrow{
+    align-self: flex-end;
+}
+/* */

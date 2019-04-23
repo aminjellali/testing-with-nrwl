@@ -82,8 +82,6 @@ export class TogglableMenuComponent implements OnInit {
   @Input('menu-name') menuName: String;
   @Input('open') openAsDefault: boolean;
   ngOnInit() {
-    console.log(this.openAsDefault);
-    console.log(this.menuName);
   }
 
   constructor() {

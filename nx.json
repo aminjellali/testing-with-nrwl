@@ -25,6 +25,12 @@
     },
     "comparator": {
       "tags": []
+    },
+    "e2e-test": {
+      "tags": []
+    },
+    "e2e-test-e2e": {
+      "tags": []
     }
   }
 }

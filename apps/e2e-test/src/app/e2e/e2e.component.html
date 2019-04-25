@@ -1,0 +1,62 @@
+<div class="container">
+  <h1>Welcome to Dump calculator</h1>
+  <h5>How it works</h5>
+  <p>
+    Step 1: Type in two numbers <br />
+    Step 2: Select an operator <br />
+    Step 3: Determine the safe zone<br />
+    Step 4: Click on calculate
+  </p>
+  <table>
+    <tr>
+      <td>first Number:</td>
+      <td><input type="text" [(ngModel)]="firstNumber" /></td>
+    </tr>
+    <tr>
+      <td>second Number:</td>
+      <td><input type="text" [(ngModel)]="secondNumber" /></td>
+    </tr>
+
+    <tr>
+      <td colspan="2">
+        <li style="list-style-type:none; margin-left:25%; margin-right:25%;">
+          <ul>
+            <input type="radio" [(ngModel)]="operation" value="add" />
+            add
+          </ul>
+          <ul>
+            <input type="radio" [(ngModel)]="operation" value="multiply" />
+            multiply
+          </ul>
+          <ul>
+            <input type="radio" [(ngModel)]="operation" value="devide" />
+            devide
+          </ul>
+        </li>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">Safe zone</td>
+    </tr>
+    <tr>
+      <td>from</td>
+      <td><input type="number" [(ngModel)]="safeZone.from" /></td>
+    </tr>
+    <tr>
+      <td>to</td>
+      <td><input type="number" [(ngModel)]="safeZone.to" /></td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <button
+          style="margin-left:25%; margin-right:25%;"
+          (click)="calculate()"
+        >
+          calculate
+        </button>
+      </td>
+    </tr>
+  </table>
+
+  <div [ngStyle]="{'color': styleResult()}">{{ result }}</div>
+</div>

@@ -92,4 +92,7 @@ export class TogglableMenuComponent implements OnInit {
   showOrHide() {
     this.openAsDefault = !this.openAsDefault;
   }
+  justForFun(){
+    console.log("Just For Fun");
+  }
 }

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { extendedFunc } from 'libs/my-utils/src';
+// import { extendedFunc } from './../../../../../libs/my-utils/src'; //libs/e2e-component-utils/src/index.ts;
+
 interface safeZone {
   from: number;
   to: number;
@@ -31,7 +34,7 @@ export class E2eComponent implements OnInit {
     }
   }
   testInput(firstNumber, secondNumber) {
-    return isNaN(firstNumber) || isNaN(secondNumber);
+    return  extendedFunc(firstNumber, secondNumber);//isNaN(firstNumber) || isNaN(secondNumber);
   }
   calculatingFunction(operation, firstNumber, secondNumber) {
     switch (operation) {

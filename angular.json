@@ -398,6 +398,150 @@
           }
         }
       }
+    },
+    "e2e-component-utils": {
+      "root": "libs/e2e-component-utils",
+      "sourceRoot": "libs/e2e-component-utils/src",
+      "projectType": "library",
+      "prefix": "widgets-project",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/e2e-component-utils/tsconfig.lib.json",
+              "libs/e2e-component-utils/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/builders:jest",
+          "options": {
+            "jestConfig": "libs/e2e-component-utils/jest.config.js",
+            "tsConfig": "libs/e2e-component-utils/tsconfig.spec.json"
+          }
+        }
+      },
+      "schematics": {}
+    },
+    "e2e-comp": {
+      "root": "libs/e2e-comp",
+      "sourceRoot": "libs/e2e-comp/src",
+      "projectType": "library",
+      "prefix": "widgets-project",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "libs/e2e-comp/tsconfig.lib.json",
+            "project": "libs/e2e-comp/ng-package.json"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/e2e-comp/tsconfig.lib.json",
+              "libs/e2e-comp/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/builders:jest",
+          "options": {
+            "jestConfig": "libs/e2e-comp/jest.config.js",
+            "tsConfig": "libs/e2e-comp/tsconfig.spec.json"
+          }
+        }
+      },
+      "schematics": {}
+    },
+    "utils-lib": {
+      "root": "libs/utils-lib",
+      "sourceRoot": "libs/utils-lib/src",
+      "projectType": "library",
+      "prefix": "widgets-project",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/utils-lib/tsconfig.lib.json",
+              "libs/utils-lib/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/builders:jest",
+          "options": {
+            "jestConfig": "libs/utils-lib/jest.config.js",
+            "tsConfig": "libs/utils-lib/tsconfig.spec.json"
+          }
+        }
+      },
+      "schematics": {}
+    },
+    "e2e-lib": {
+      "root": "libs/e2e-lib",
+      "sourceRoot": "libs/e2e-lib/src",
+      "projectType": "library",
+      "prefix": "widgets-project",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/e2e-lib/tsconfig.lib.json",
+              "libs/e2e-lib/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/builders:jest",
+          "options": {
+            "jestConfig": "libs/e2e-lib/jest.config.js",
+            "tsConfig": "libs/e2e-lib/tsconfig.spec.json"
+          }
+        }
+      },
+      "schematics": {}
+    },
+    "my-utils": {
+      "root": "libs/my-utils",
+      "sourceRoot": "libs/my-utils/src",
+      "projectType": "library",
+      "prefix": "widgets-project",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "libs/my-utils/tsconfig.lib.json",
+            "project": "libs/my-utils/ng-package.json"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/my-utils/tsconfig.lib.json",
+              "libs/my-utils/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/builders:jest",
+          "options": {
+            "jestConfig": "libs/my-utils/jest.config.js",
+            "tsConfig": "libs/my-utils/tsconfig.spec.json"
+          }
+        }
+      },
+      "schematics": {}
     }
   },
   "cli": {

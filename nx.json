@@ -31,6 +31,21 @@
     },
     "e2e-test-e2e": {
       "tags": []
+    },
+    "e2e-component-utils": {
+      "tags": []
+    },
+    "e2e-comp": {
+      "tags": []
+    },
+    "utils-lib": {
+      "tags": []
+    },
+    "e2e-lib": {
+      "tags": []
+    },
+    "my-utils": {
+      "tags": []
     }
   }
 }

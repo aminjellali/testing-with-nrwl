@@ -1,17 +1,14 @@
-// describe('My First Test', function() {
-//   it('Finds google', function() {
-//       cy.myCustomCommand();
-//   });
-//   it('test if e2e works', () => {
-//     cy.get('p').should('be.visible');
-//     cy.get('p').should($p => {
-//       expect($p).to.contain('!');
-//     });
-//   });
-// });
-import { getGreeting } from '../support/app.po';
-describe('Testing if modular tricks work', ()=>{
-    it('finds facebook', ()=>{
-        getGreeting('https://www.facebook.com');
-    })
+describe('running e2e tests for the comparator widget', () => {
+  beforeEach(() => {
+    cy.visit('localhost:9080');
+    // cy.wait(5000);
+  });
+  it('test if we managed to get to the web site', () => {
+    cy.url().should('contain', 'localhost:9080');
+  });
+  it('clicking description', () => {
+    cy.get('.ng-tns-c0-0.ng-tns-c1-2 > .menu').click();
+    // cy.wait(2000);
+    cy.get('.ng-tns-c0-0.ng-tns-c1-2 > .content > .ng-tns-c0-0 > .table-bordered').should('be.visible');
+  });
 });

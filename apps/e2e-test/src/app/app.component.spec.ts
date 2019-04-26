@@ -1,3 +1,4 @@
+// import { ComparatorModule } from '@widgets-project/comparator';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AppComponent } from './app.component';

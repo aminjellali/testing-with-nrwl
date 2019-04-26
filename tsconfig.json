@@ -18,7 +18,14 @@
       "@widgets-project/libs/performance-component-lib": [
         "libs/libs/performance-component-lib/src/index.ts"
       ],
-      "@widgets-project/comparator": ["libs/comparator/src/index.ts"]
+      "@widgets-project/comparator": ["libs/comparator/src/index.ts"],
+      "@widgets-project/e2e-component-utils": [
+        "libs/e2e-component-utils/src/index.ts"
+      ],
+      "@widgets-project/e2e-comp": ["libs/e2e-comp/src/index.ts"],
+      "@widgets-project/utils-lib": ["libs/utils-lib/src/index.ts"],
+      "@widgets-project/e2e-lib": ["libs/e2e-lib/src/index.ts"],
+      "@widgets-project/my-utils": ["libs/my-utils/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

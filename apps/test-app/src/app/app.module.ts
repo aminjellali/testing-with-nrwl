@@ -1,3 +1,4 @@
+import { UtilModule } from './../../../../libs/my-utils/src/lib/util.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // tslint:disable-next-line: nx-enforce-module-boundaries
 import { ComparatorModule } from '@widgets-project/comparator';
@@ -12,7 +13,8 @@ import { TestComponent } from './test/test.component';
   declarations: [AppComponent, TestComponent],
   imports: [BrowserModule,
     ComparatorModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    UtilModule
   ],
   providers: [],
   bootstrap: [AppComponent]

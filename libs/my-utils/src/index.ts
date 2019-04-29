@@ -1,1 +1,1 @@
-export * from './lib/extending-if-contains-string';
+export { extendedFunc } from './lib/extending-if-contains-string';

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { extendedFunc } from 'libs/my-utils/src';
-// import { extendedFunc } from './../../../../../libs/my-utils/src'; //libs/e2e-component-utils/src/index.ts;
 
 interface safeZone {
   from: number;

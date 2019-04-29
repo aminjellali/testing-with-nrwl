@@ -25,7 +25,8 @@
       "@widgets-project/e2e-comp": ["libs/e2e-comp/src/index.ts"],
       "@widgets-project/utils-lib": ["libs/utils-lib/src/index.ts"],
       "@widgets-project/e2e-lib": ["libs/e2e-lib/src/index.ts"],
-      "@widgets-project/my-utils": ["libs/my-utils/src/index.ts"]
+      "@widgets-project/my-utils": ["libs/my-utils/src/index.ts"],
+      "@widgets-project/utils-service": ["libs/utils-service/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

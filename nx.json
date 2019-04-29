@@ -46,6 +46,9 @@
     },
     "my-utils": {
       "tags": ["scope:shared"]
+    },
+    "utils-service": {
+      "tags": ["scope:shared"]
     }
   }
 }

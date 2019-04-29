@@ -1,6 +1,6 @@
+import { MyUtilsService } from '@widgets-project/utils-service'; //utils-service';
+import { extendedFunc } from '@widgets-project/my-utils';
 import { Component, OnInit } from '@angular/core';
-import { extendedFunc } from 'libs/my-utils/src';
-
 interface safeZone {
   from: number;
   to: number;
@@ -16,7 +16,7 @@ export class E2eComponent implements OnInit {
   operation: any = null;
   result: any = null;
   safeZone: safeZone = { from: 10, to: 20 };
-  constructor() {}
+  constructor(private utilsService: MyUtilsService) {} //private utilsService: MyUtilsService
 
   ngOnInit() {}
 
@@ -33,7 +33,7 @@ export class E2eComponent implements OnInit {
     }
   }
   testInput(firstNumber, secondNumber) {
-    return  extendedFunc(firstNumber, secondNumber);//isNaN(firstNumber) || isNaN(secondNumber);
+    return  this.utilsService.extendedFunc(firstNumber, secondNumber);//isNaN(firstNumber) || isNaN(secondNumber);
   }
   calculatingFunction(operation, firstNumber, secondNumber) {
     switch (operation) {

@@ -542,6 +542,40 @@
         }
       },
       "schematics": {}
+    },
+    "utils-service": {
+      "root": "libs/utils-service",
+      "sourceRoot": "libs/utils-service/src",
+      "projectType": "library",
+      "prefix": "widgets-project",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "libs/utils-service/tsconfig.lib.json",
+            "project": "libs/utils-service/ng-package.json"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/utils-service/tsconfig.lib.json",
+              "libs/utils-service/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/builders:jest",
+          "options": {
+            "jestConfig": "libs/utils-service/jest.config.js",
+            "tsConfig": "libs/utils-service/tsconfig.spec.json",
+            "setupFile": "libs/utils-service/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {}
     }
   },
   "cli": {

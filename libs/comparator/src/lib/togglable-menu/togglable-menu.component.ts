@@ -83,6 +83,8 @@ export class TogglableMenuComponent implements OnInit {
   @Input('open') openAsDefault: boolean;
   ngOnInit() {
     console.log('hello world');
+    console.log('bye world');
+
   }
 
   constructor() {

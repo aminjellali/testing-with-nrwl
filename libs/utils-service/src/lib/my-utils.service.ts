@@ -6,6 +6,6 @@ import { Injectable } from '@angular/core';
 export class MyUtilsService {
   constructor() {}
   extendedFunc(firstNumber, secondNumber) {
-    return !isNaN(firstNumber) || isNaN(secondNumber);
+    return  isNaN(firstNumber) || isNaN(secondNumber);
   }
 }

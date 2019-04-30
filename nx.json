@@ -20,9 +20,6 @@
     "test-app-e2e": {
       "tags": []
     },
-    "libs-performance-component-lib": {
-      "tags": []
-    },
     "comparator": {
       "tags": []
     },
@@ -41,14 +38,17 @@
     "utils-lib": {
       "tags": []
     },
-    "e2e-lib": {
-      "tags": []
-    },
     "my-utils": {
       "tags": ["scope:shared"]
     },
     "utils-service": {
       "tags": ["scope:shared"]
+    },
+    "delete": {
+      "tags": []
+    },
+    "delete-e2e": {
+      "tags": []
     }
   }
 }

@@ -1,9 +1,12 @@
 import { testOperatorAdd } from './../support/app.po';
+const countries = [{"name": "tunisia"}, {"name":"usa"}, {"name":"canada"}];
 // defining a test
 describe('Tests for the dump calculator', () => {
   const url = 'localhost:4222';
   beforeEach(() => {
-    cy.visit(url);
+    cy.server();
+    cy.route('GET','https://restcountries.eu/rest/v2/all',countries);
+    cy.visit('/');
   });
   // definng the sub test using it
   it('testing the add operator', () => {

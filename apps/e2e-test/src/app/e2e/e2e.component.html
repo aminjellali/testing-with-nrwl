@@ -58,5 +58,9 @@
     </tr>
   </table>
 
-  <div [ngStyle]="{'color': styleResult()}">{{ result }}</div>
+  <div [ngStyle]="{ color: styleResult() }">{{ result }}</div>
+</div>
+
+<div *ngFor="let country of data">
+  {{ country.name }}
 </div>

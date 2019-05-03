@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { MyUtilsService } from '@widgets-project/utils-service'; //utils-service';
 import { extendedFunc } from '@widgets-project/my-utils';
 import { Component, OnInit } from '@angular/core';
@@ -16,9 +17,14 @@ export class E2eComponent implements OnInit {
   operation: any = null;
   result: any = null;
   safeZone: safeZone = { from: 10, to: 20 };
-  constructor(private utilsService: MyUtilsService) {} //private utilsService: MyUtilsService
+  data: any = null;
+  constructor(private utilsService: MyUtilsService, private http: HttpClient) {} //private utilsService: MyUtilsService
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.http.get('https://restcountries.eu/rest/v2/all').subscribe(res => {
+      this.data = res;
+    });
+  }
 
   calculate() {
     console.log(this.safeZone);
@@ -33,7 +39,7 @@ export class E2eComponent implements OnInit {
     }
   }
   testInput(firstNumber, secondNumber) {
-    return  this.utilsService.extendedFunc(firstNumber, secondNumber);//isNaN(firstNumber) || isNaN(secondNumber);
+    return this.utilsService.extendedFunc(firstNumber, secondNumber); //isNaN(firstNumber) || isNaN(secondNumber);
   }
   calculatingFunction(operation, firstNumber, secondNumber) {
     switch (operation) {
@@ -45,10 +51,10 @@ export class E2eComponent implements OnInit {
         return firstNumber / secondNumber;
     }
   }
-  styleResult(): string{
-    if (this.result < this.safeZone.from || this.result >this.safeZone.to ){
+  styleResult(): string {
+    if (this.result < this.safeZone.from || this.result > this.safeZone.to) {
       return 'rgb(255,0,0)';
-    } 
+    }
     return 'rgb(124,252,0)';
   }
 }

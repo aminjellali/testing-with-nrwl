@@ -8,34 +8,10 @@
     "nx.json": "*"
   },
   "projects": {
-    "widgets-project": {
-      "tags": []
-    },
-    "widgets-project-e2e": {
-      "tags": []
-    },
-    "test-app": {
-      "tags": []
-    },
-    "test-app-e2e": {
-      "tags": []
-    },
-    "comparator": {
-      "tags": []
-    },
     "e2e-test": {
       "tags": []
     },
     "e2e-test-e2e": {
-      "tags": []
-    },
-    "e2e-component-utils": {
-      "tags": []
-    },
-    "e2e-comp": {
-      "tags": []
-    },
-    "utils-lib": {
       "tags": []
     },
     "my-utils": {
@@ -44,10 +20,7 @@
     "utils-service": {
       "tags": ["scope:shared"]
     },
-    "delete": {
-      "tags": []
-    },
-    "delete-e2e": {
+    "comparator": {
       "tags": []
     }
   }

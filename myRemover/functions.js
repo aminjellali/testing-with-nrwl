@@ -2,14 +2,13 @@
  * @author: Amin Jellali
  * @email : a.j.aminjellali@gmail.com
  */
-
-const minimist = require('minimist');
 // file system
 const fs = require('fs-extra');
 // lib to give cli some color
 const chalk = require('chalk');
-// cli handler
-const commander = require('commander');
+// package to remove non empty directories
+const rimraf = require('rimraf');
+const error = chalk.underline.red;
 
 /*-*******************  Functions  *******************-*/
 module.exports = {
@@ -22,60 +21,109 @@ module.exports = {
    */
   definedInput: function(directoryName, typeName) {
     if (directoryName === undefined)
-      return 'ERROR the directory name argument is not defined';
+      return 'ERROR the directory name argument is not defined use --help argument for help';
     else if (typeName === undefined)
-      return 'ERROR the type argument is not defined';
+      return 'ERROR the type argument is not defined use --help argument for help';
+    else if (typeName != 'lib' && typeName != 'app') {
+      return 'ERROR the type argument can be either "lib" or "app" use --help argument for help';
+    }
     return true;
   },
   /**
    * @summary creates back up for a directory
    * @param {string} directoryName
    */
-  createDirectoryBackUp: function(directoryName) {
-    fs.copy('angular.json', './backUps/back-up-angular_1.json')
-      .then(() => {
-        console.log(
-          chalk.green('CREATE ') +
-            process.cwd() +
-            '\backUps\back-up-angular.json'
-        );
-      })
-      .catch(err => console.error(err));
+  createDirectoryBackUp: async function(directoryName, fileType, timeString) {
+    return new Promise((resolve, reject) => {
+      const backUpDirectoryName = './backUps/';
+      const directoryNameByDate = formatDestinationFileName(timeString);
+      const destinationDirectory =
+        backUpDirectoryName + directoryNameByDate + '/' + directoryName;
+      var recalibratedDirectoryName = '';
+      if (fileType === 'app') {
+        recalibratedDirectoryName = './apps/' + directoryName;
+      } else if (fileType === 'lib') {
+        recalibratedDirectoryName = './libs/' + directoryName;
+      }
+      fs.copy(recalibratedDirectoryName, destinationDirectory)
+        .then(() => {
+          resolve(
+            console.log(
+              chalk.green('       CREATE') +
+                process.cwd() +
+                '\\' +
+                'backUps' +
+                '\\' +
+                directoryNameByDate +
+                '\\' +
+                directoryName
+            )
+          );
+        })
+        .catch(err => {
+          reject(
+            console.log(
+              chalk.red('FATAL: The specified directory ') +
+                error(directoryName) +
+                chalk.red(' could not be found in path ') +
+                chalk.yellow(err.path)
+            )
+          );
+          // Remove the temp empty file
+          fs.rmdir(backUpDirectoryName + directoryNameByDate);
+          process.exit();
+        });
+    });
   },
-  createFileBackUp: function(fileName) {
+  createFileBackUp: async function(fileName, timeString) {
     const backUpFileName = './backUps/';
-    const fileNameByDate = formatDestinationFileName();
+    const fileNameByDate = formatDestinationFileName(timeString);
     const destinationFile = backUpFileName + fileNameByDate + '/' + fileName;
     const recalibratedFileName = fileName;
-    console.log(destinationFile);
-    fs.copy(recalibratedFileName, destinationFile)
+    await fs
+      .copy(recalibratedFileName, destinationFile)
       .then(() => {
         console.log(
-          chalk.green('CREATE ') +
+          chalk.green('       CREATE') +
             process.cwd() +
             '\\' +
-            'backUps ' +
+            'backUps' +
             '\\' +
             fileNameByDate +
             '\\' +
             fileName
         );
       })
-      .catch(err => console.error(err));
+      .catch(err => {
+        console.log(
+          error(
+            'FATAL: The specified directory ' +
+              fileName +
+              ' could not be found '
+          )
+        );
+        process.exit();
+      });
   },
-  removeDirectory: function(directoryName, type) {
+  removeDirectory: async function(directoryName, type) {
     if (type === 'lib') {
-      console.log(chalk.blue('should Remove app'));
+      await rimraf.sync('./libs/' + directoryName);
     } else if (type === 'app') {
-      rimraf('./apps/' + directoryName);
-      console.log();
+      await rimraf.sync('./apps/' + directoryName);
     }
+  },
+  removeDirAttrFormNx(jsonNx, fileName) {
+    delete jsonNx.projects[fileName];
+    return jsonNx;
+  },
+  removeDirAttrFromAngular(jsonAngular, fileName) {
+    delete jsonAngular.projects[fileName];
+    return jsonAngular;
   }
 };
-
 /*-*******************  Functions  *******************-*/
-function formatDestinationFileName() {
-  const current_datetime = new Date();
+function formatDestinationFileName(current_datetime) {
+  // const current_datetime = new Date();
   const formatted_date =
     current_datetime.getFullYear() +
     '-' +

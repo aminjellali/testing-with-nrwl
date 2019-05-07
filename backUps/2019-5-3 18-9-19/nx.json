@@ -1,0 +1,1 @@
+{"npmScope":"widgets-project","implicitDependencies":{"angular.json":"*","package.json":"*","tsconfig.json":"*","tslint.json":"*","nx.json":"*"},"projects":{"e2e-test":{"tags":[]},"e2e-test-e2e":{"tags":[]},"my-utils":{"tags":["scope:shared"]},"utils-service":{"tags":["scope:shared"]}}}

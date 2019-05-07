@@ -10,7 +10,8 @@ import { FormsModule } from '@angular/forms';
     CommonModule,
     BrowserAnimationsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    
   ],
   declarations: [TogglableMenuComponent],
   exports: [TogglableMenuComponent]

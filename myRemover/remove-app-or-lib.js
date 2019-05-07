@@ -13,7 +13,8 @@ const _fs = require('fs');
 const chalk = require('chalk');
 // cli handler
 const commander = require('commander');
-// Remove not empty directories
+
+const synch = require('./synchronize');
 
 /**
  * defining arguments
@@ -22,7 +23,6 @@ const commander = require('commander');
  * @type : {lib | app } to delete either a library or an app
  * @directory-name
  */
-
 commander
   .version('1.0.0', '-v, --version')
   .usage(
@@ -34,6 +34,9 @@ commander
   )
   .option('-f, --directory-name <directory name>', 'directory name to delete')
   .parse(process.argv);
+console.log(
+  chalk.magentaBright('**** e2e projects has to be deleted seperatly ****')
+);
 
 // plug arguments
 const directoryName = commander.directoryName;
@@ -45,27 +48,27 @@ if (argumentsProcessResult !== true) {
   console.log(chalk.red(argumentsProcessResult));
   process.exit();
 }
-functions.createFileBackUp('angular.json');
-// fs.copy('./dist', './backUps/jhdb')
-//   .then(() => {
-//     console.log(chalk.green('CREATE ') + process.cwd() + './backUps/pppppp');
-//   })
-//   .catch(err => console.error(err));
-// fs.remove('./deleteMe')
-// get the current angular.json directory
-let angularJsondirectory = fs.readFileSync('angular.json');
-// parse the angular.json directory to a json Object
-
-let jsonAngular = JSON.parse(angularJsondirectory);
-// get the current angular.json directory
+/* ------------------- CREATE BACKUP FILES ------------------- */
+synch.createBackUpFiles(directoryName, type);
+/* ------------------- REMOVING FILES ------------------- */
+// functions.removeDirectory(directoryName, type);
+/* ------------------- UPDATE NX FILE ------------------- */
 let nxJsondirectory = fs.readFileSync('nx.json');
 // parse the angular.json directory to a json Object
 let jsonNx = JSON.parse(nxJsondirectory);
 
-delete jsonNx.projects.delete;
-const nxUpdatedJson = JSON.stringify(jsonNx);
-fs.writeFile('modif-angular.json',nxUpdatedJson,'utf8', (error)=>{
-    if (error) {
-        console.log(error);
-    }
-});
+// making changes
+functions.removeDirAttrFormNx(jsonNx, directoryName);
+// persisting changes
+fs.writeJson('./nx.json', jsonNx);
+/* ------------------- UPDATE ANGULAR FILE ------------------- */
+let angularJsondirectory = fs.readFileSync('angular.json');
+// parse the angular.json directory to a json Object
+let jsonAngular = JSON.parse(angularJsondirectory);
+// making changes
+functions.removeDirAttrFromAngular(jsonAngular, directoryName);
+// persisting changes
+fs.writeJson('./angular.json', jsonAngular);
+setTimeout(() => {
+  console.log(chalk.bgBlue('done !'))
+}, 500);

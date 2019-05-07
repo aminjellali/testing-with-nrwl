@@ -24,7 +24,8 @@
     "update:check": "ng update",
     "workspace-schematic": "./node_modules/.bin/nx workspace-schematic",
     "dep-graph": "./node_modules/.bin/nx dep-graph",
-    "help": "./node_modules/.bin/nx help"
+    "help": "./node_modules/.bin/nx help",
+    "ajRm": "node ./myRemover/remove-app-or-lib.js"
   },
   "private": true,
   "dependencies": {
@@ -37,9 +38,10 @@
     "@angular/platform-browser-dynamic": "^7.0.0",
     "@angular/router": "^7.0.0",
     "core-js": "^2.5.4",
+    "istanbul": "^0.4.5",
+    "ngx-build-plus": "^7.8.3",
     "rxjs": "6.3.3",
-    "zone.js": "^0.8.26",
-    "istanbul": "^0.4.5"
+    "zone.js": "^0.8.26"
   },
   "devDependencies": {
     "jest-preset-angular": "7.0.0",

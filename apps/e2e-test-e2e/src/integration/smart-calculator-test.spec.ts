@@ -2,7 +2,6 @@ import { testOperatorAdd } from './../support/app.po';
 const countries = [{"name": "tunisia"}, {"name":"usa"}, {"name":"canada"}];
 // defining a test
 describe('Tests for the dump calculator', () => {
-  const url = 'localhost:4222';
   beforeEach(() => {
     cy.server();
     cy.route('GET','https://restcountries.eu/rest/v2/all',countries);

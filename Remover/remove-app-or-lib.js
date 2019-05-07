@@ -32,10 +32,10 @@ commander
     '-t, --type <lib | app>',
     '{lib | app } to delete either a library or an app'
   )
-  .option('-f, --directory-name <directory name>', 'directory name to delete')
+  .option('-d, --directory-name <directory name>', 'directory name to delete')
   .parse(process.argv);
 console.log(
-  chalk.magentaBright('**** e2e projects has to be deleted seperatly ****')
+  chalk.magentaBright('**** e2e projects have to be deleted seperatly ****')
 );
 
 // plug arguments
@@ -53,22 +53,3 @@ synch.createBackUpFiles(directoryName, type);
 /* ------------------- REMOVING FILES ------------------- */
 // functions.removeDirectory(directoryName, type);
 /* ------------------- UPDATE NX FILE ------------------- */
-let nxJsondirectory = fs.readFileSync('nx.json');
-// parse the angular.json directory to a json Object
-let jsonNx = JSON.parse(nxJsondirectory);
-
-// making changes
-functions.removeDirAttrFormNx(jsonNx, directoryName);
-// persisting changes
-fs.writeJson('./nx.json', jsonNx);
-/* ------------------- UPDATE ANGULAR FILE ------------------- */
-let angularJsondirectory = fs.readFileSync('angular.json');
-// parse the angular.json directory to a json Object
-let jsonAngular = JSON.parse(angularJsondirectory);
-// making changes
-functions.removeDirAttrFromAngular(jsonAngular, directoryName);
-// persisting changes
-fs.writeJson('./angular.json', jsonAngular);
-setTimeout(() => {
-  console.log(chalk.bgBlue('done !'))
-}, 500);

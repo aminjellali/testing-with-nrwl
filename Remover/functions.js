@@ -29,27 +29,33 @@ module.exports = {
     }
     return true;
   },
+
   /**
-   * @summary creates back up for a directory
-   * @param {string} directoryName
+   * In case an error was made this function creates a back-up directory with
+   * current date as it's name to be able to revert changes
+   * @param  {any} directoryName
+   * @param  {any} fileType
+   * @param  {any} timeString
+   * @return {Promise}
    */
-  createDirectoryBackUp: async function(directoryName, fileType, timeString) {
+  createDirectoryBackUp: function(directoryName, fileType, timeString) {
+    // console.log(process.cwd());
     return new Promise((resolve, reject) => {
-      const backUpDirectoryName = './backUps/';
+      const backUpDirectoryName = process.cwd() + '/backUps/';
       const directoryNameByDate = formatDestinationFileName(timeString);
       const destinationDirectory =
         backUpDirectoryName + directoryNameByDate + '/' + directoryName;
       var recalibratedDirectoryName = '';
       if (fileType === 'app') {
-        recalibratedDirectoryName = './apps/' + directoryName;
+        recalibratedDirectoryName = process.cwd() + '/apps/' + directoryName;
       } else if (fileType === 'lib') {
-        recalibratedDirectoryName = './libs/' + directoryName;
+        recalibratedDirectoryName = process.cwd() + '/libs/' + directoryName;
       }
       fs.copy(recalibratedDirectoryName, destinationDirectory)
         .then(() => {
           resolve(
             console.log(
-              chalk.green('       CREATE') +
+              chalk.green('       CREATE ') +
                 process.cwd() +
                 '\\' +
                 'backUps' +
@@ -69,21 +75,31 @@ module.exports = {
                 chalk.yellow(err.path)
             )
           );
-          // Remove the temp empty file
-          fs.rmdir(backUpDirectoryName + directoryNameByDate);
+          // Remove the temp empty file in case of a failure of the operation
+          fs.rmdir(backUpDirectoryName + directoryNameByDate).then(() =>
+            console.log('done').catch(err => console.log(err))
+          );
           process.exit();
         });
     });
   },
-  createFileBackUp: async function(fileName, timeString) {
-    const backUpFileName = './backUps/';
+  /**
+   * In case an error was made this function creates a back-up directory with
+   * current date as it's name to be able to revert changes
+   * @param  {any} fileName
+   * @param  {any} timeString
+   */
+  createFileBackUp:  function(fileName, timeString) {
+    return new Promise ((resolve, reject)=>{
+      const backUpFileName = process.cwd() + '/backUps/';
     const fileNameByDate = formatDestinationFileName(timeString);
-    const destinationFile = backUpFileName + fileNameByDate + '/' + fileName;
-    const recalibratedFileName = fileName;
-    await fs
+    const destinationFile =backUpFileName + fileNameByDate + '/' + fileName;
+    const recalibratedFileName = process.cwd() + '/'+fileName;
+    // console.log(recalibratedFileName + '---->' + destinationFile)
+     fs
       .copy(recalibratedFileName, destinationFile)
       .then(() => {
-        console.log(
+        resolve(console.log(
           chalk.green('       CREATE') +
             process.cwd() +
             '\\' +
@@ -92,24 +108,25 @@ module.exports = {
             fileNameByDate +
             '\\' +
             fileName
-        );
+        ));
       })
       .catch(err => {
-        console.log(
+        reject(console.log(
           error(
             'FATAL: The specified directory ' +
               fileName +
               ' could not be found '
-          )
-        );
+          ) + err
+        ))
         process.exit();
-      });
+      })
+    });
   },
   removeDirectory: async function(directoryName, type) {
     if (type === 'lib') {
-      await rimraf.sync('./libs/' + directoryName);
+      await rimraf.sync(process.cwd() + '/libs/' + directoryName);
     } else if (type === 'app') {
-      await rimraf.sync('./apps/' + directoryName);
+      await rimraf.sync(process.cwd() + '/apps/' + directoryName);
     }
   },
   removeDirAttrFormNx(jsonNx, fileName) {
@@ -121,6 +138,7 @@ module.exports = {
     return jsonAngular;
   }
 };
+
 /*-*******************  Functions  *******************-*/
 function formatDestinationFileName(current_datetime) {
   // const current_datetime = new Date();

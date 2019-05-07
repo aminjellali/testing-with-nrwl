@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BrowserModule } from '@angular/platform-browser';
@@ -11,7 +12,7 @@ describe('E2eComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [E2eComponent],
-      imports: [BrowserModule, FormsModule]
+      imports: [BrowserModule, FormsModule, HttpClientModule]
     }).compileComponents();
   }));
 

@@ -85,7 +85,7 @@
           }
         },
         "test": {
-          "builder": "ngx-build-plus:karma",
+          "builder": "@nrwl/builders:jest",
           "options": {
             "jestConfig": "apps/e2e-test/jest.config.js",
             "tsConfig": "apps/e2e-test/tsconfig.spec.json",

@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 // import { ComparatorModule } from '@widgets-project/comparator';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
@@ -12,7 +13,7 @@ describe('AppComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserModule, FormsModule],
+      imports: [BrowserModule, FormsModule, HttpClientModule],
       declarations: [AppComponent, E2eComponent]
     }).compileComponents();
   }));

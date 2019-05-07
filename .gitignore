@@ -7,7 +7,7 @@
 
 # dependencies
 /node_modules
-
+/backUps
 # IDEs and editors
 /.idea
 .project
